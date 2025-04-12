@@ -4,6 +4,7 @@ import yurakIcon from "../assets/svg/yurakIcon.svg";
 
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
 
 type ProductType = {
   id: number;
@@ -31,10 +32,10 @@ function Card() {
   return (
     <div className="flex flex-wrap gap-4 justify-evenly my-6">
       {product.map((item) => (
-        <div
-          key={item.id}
+        <div key={item.id}
           className="w-[220px] mt-6 relative hover:scale-[1.05] transition-transform shadow-2xl p-3 rounded-xl flex flex-col justify-between "
         >
+          <Link href={`/product/${item.id}`}>
           <Image
             className="w-[200px] h-[190px] bg-[#F7F7F7] mb-4 object-contain"
             src={item.imageUrl}
@@ -55,6 +56,7 @@ function Card() {
             {item.description}
           </h2>
 
+          </Link>
           <div className="flex justify-between items-center">
             <div className="flex items-center justify-between">
               <h2>{item.price.toLocaleString("ru")} so'm</h2>
