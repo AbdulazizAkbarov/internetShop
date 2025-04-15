@@ -1,10 +1,12 @@
+"use client"
+
 import axios from "axios";
-import { Link } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import savatIcon from "../../assets/svg/savatIcon.svg";
 import yurakIcon from "../../assets/svg/yurakIcon.svg";
+import Link from "next/link";
 export type CategoriesPage = {
     id: number;
     name: string;
@@ -38,7 +40,7 @@ function Category() {
     }
   
     return (
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 px-12 py-6">
         {category.map((item) => (
           <div
             key={item.id}
@@ -58,7 +60,7 @@ function Category() {
                 alt="heart"
               />
               <h2 className="font-semibold">{item.name}</h2>
-              <h2 className="bg-[#ECECEC] px-2 inline-block rounded text-md my-4 truncate">
+              <h2 className="bg-[#ECECEC] inline-block rounded text-md my-4 ">
                 {item.description}
               </h2>
             </Link>

@@ -1,63 +1,67 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { ProductType } from "@/pages/Card";
+import { ProductTypes } from "@/pages/product/[id]";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
-type CartsliceType={
-    sumPrice:number
-    items:CartItemType[]
-}
-
-type CartItemType={
-    product_id:number
-    qty:number
-    total_price:number
-    product:ProductType
-}
-
-type ProductType={
-    id:number
-    name:string
-    price:number
-    imageUrl:string
-}
 
 
-const initialState:CartsliceType={
-        items:[
-            {
-                product_id:1,
-                product:{
-                    id:1,
-                    imageUrl:"",
-                    name:"asd",
-                    price:23
-                },
-                qty:5,
-                total_price:100,
-            },
+export type CartProductType = ProductType & { count: number };
 
-            {
-                product_id:2,
-                product:{
-                    id:2,
-                    imageUrl:"",
-                    name:"asdsd",
-                    price:25
-                },
-                qty:5,
-                total_price:100,
-            },
-        ],
-        sumPrice:1000
-    }
+export type CartState = {
+  items: CartProductType[];
+};
 
+const initialState: CartState = {
+  items: [],
+};
 
-export  const cartSlice = createSlice({
-    name:"cart",
-    initialState:initialState,
-   
-    reducers:{
-        addToCad:(state,{payload})=>{
+export const cartSlice = createSlice({
+  name: "cart",
+  initialState: initialState,
 
-        }
+  reducers: {
+    addToCart: (state, action: PayloadAction<ProductType>) => {
+      const cartItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+      if (cartItem) {
+        cartItem.count += 1;
+      } else {
+        state.items.push({ ...action.payload, count: 1 });
+      }
     },
-})
+    removeCart: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+
+    minuscount: (state, action: PayloadAction<number>) => {
+      const minus = state.items.find(
+        (item) => item.id === action.payload
+      );
+
+      if (minus && minus.count > 1) {
+        minus.count -= 1;
+      } else {
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload
+        );
+      }
+    },
+    pluscount: (state, action: PayloadAction<number>) => {
+      const item = state.items.find((i) => i.id === action.payload);
+      if (item) {
+        item.count += 1;
+      }
+    },
+    addsevimli:(state,action:PayloadAction<number>)=>{
+        const cartLike = state.items.find(
+            (item) => item.id === action.payload
+          );
+    }
+  },
+});
+
+export const { addToCart , minuscount,pluscount,removeCart, addsevimli } = cartSlice.actions;
+export default cartSlice.reducer

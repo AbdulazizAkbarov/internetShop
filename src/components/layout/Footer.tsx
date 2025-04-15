@@ -62,8 +62,8 @@ function Footer() {
             <Image
               src={"https://texnomart.uz/_nuxt/img/qr_code_footer.f794a42.png"}
               alt="df"
-              width={150}
-              height={100}
+              width={170}
+              height={120}
             />
 
             <div className="text-[#E3F6F5] pr-12">
@@ -71,20 +71,20 @@ function Footer() {
                 <Image
                   src={"https://texnomart.uz/_nuxt/img/googleplay.2b150ef.svg"}
                   alt="df"
-                  width={75}
-                  height={75}
+                  width={50}
+                  height={50}
                 />
                 <Image
                   src={"https://texnomart.uz/_nuxt/img/appstore.c200a90.svg"}
                   alt="df"
-                  width={75}
-                  height={75}
+                  width={50}
+                  height={50}
                 />
                 <Image
                   src={"https://texnomart.uz/_nuxt/img/appgallery.166b7d5.svg"}
                   alt="df"
-                  width={75}
-                  height={75}
+                  width={50}
+                  height={50}
                 />
               </div>
 
