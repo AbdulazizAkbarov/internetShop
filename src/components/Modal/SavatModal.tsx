@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../layout/store/typr";
 import Image from "next/image";
-import {  minuscount, pluscount, removeCart } from "../layout/store/Slice/cart.slice";
+import { minuscount, pluscount, removeCart } from "../layout/store/Slice/cart.slice";
 import Link from "next/link";
 
 type Props = {
@@ -11,16 +11,15 @@ type Props = {
 };
 
 const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
-
-
-
   if (!savatModal) return null;
     const cartItem =useSelector((state:RootState)=>state.cart.items)
     const dispatch =useDispatch()
-
+  const totalPrice = cartItem.reduce((sum,item)=>sum+item.price*item.count,0)
     const remove =(id:number)=>{
       dispatch(removeCart(id))
     }
+    
+  
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center">
       <div className="absolute inset-0 bg-black opacity-50" onClick={()=>{
@@ -40,14 +39,18 @@ const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
           x
         </button>
 
-
+          
         {cartItem.length > 0 ? (
             <>
               {cartItem.map((item) => (
+
+                
+                
                 <div
                   key={item.id}
                   className="flex border-1 border-[lightgrey] w-[50%] mx-auto rounded-full    my-2 px-5  justify-between items-center py-2"
                 >
+                  
                   <div className="flex gap-3 items-center">
                     <Image
                       src={item.imageUrl}
@@ -62,6 +65,7 @@ const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
                     <button
                       onClick={() => {
                         dispatch(minuscount(item.id));
+                        
                       }}
                       className=" border-1 border-[grey] rounded-full px-4 py-1 text-2xl cursor-pointer"
                     >
@@ -79,18 +83,28 @@ const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
                   </div>
 
                   <div className="flex gap-2 items-center">
-                    <p className="text-xl font-bold font-mono">
+                    <p className="text-xl font-bold">
                       {(item.count * item.price).toLocaleString("ru")} So`m
                     </p>
                     <button
                       onClick={() => remove(item.id)}
-                      className=" text-red-500 border-1 px-2 py-1 rounded-xl  cursor-pointer"
+                      className="bg-red-600 text-white px-2 py-1 rounded-lg  cursor-pointer"
                     >
                       Delet
                     </button>
                   </div>
+
+
+                  <div>
+
+                    
+                    
+                  </div>
                 </div>
               ))}
+
+<div className="text-2xl font-bold">Umumiy Summa :{(totalPrice).toLocaleString("ru")} so'm</div>
+
             </>
           ) : (
             <div className="text-center flex flex-col items-center">

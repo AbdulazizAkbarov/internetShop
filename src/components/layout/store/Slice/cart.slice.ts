@@ -2,9 +2,6 @@ import { ProductType } from "@/pages/Card";
 import { ProductTypes } from "@/pages/product/[id]";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
-
-
 export type CartProductType = ProductType & { count: number };
 
 export type CartState = {
@@ -31,22 +28,15 @@ export const cartSlice = createSlice({
       }
     },
     removeCart: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter(
-        (item) => item.id !== action.payload
-      );
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
-
     minuscount: (state, action: PayloadAction<number>) => {
-      const minus = state.items.find(
-        (item) => item.id === action.payload
-      );
+      const minus = state.items.find((item) => item.id === action.payload);
 
       if (minus && minus.count > 1) {
         minus.count -= 1;
       } else {
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload
-        );
+        state.items = state.items.filter((item) => item.id !== action.payload);
       }
     },
     pluscount: (state, action: PayloadAction<number>) => {
@@ -55,13 +45,9 @@ export const cartSlice = createSlice({
         item.count += 1;
       }
     },
-    addsevimli:(state,action:PayloadAction<number>)=>{
-        const cartLike = state.items.find(
-            (item) => item.id === action.payload
-          );
-    }
   },
 });
 
-export const { addToCart , minuscount,pluscount,removeCart, addsevimli } = cartSlice.actions;
-export default cartSlice.reducer
+export const { addToCart, minuscount, pluscount, removeCart } =
+  cartSlice.actions;
+export default cartSlice.reducer;

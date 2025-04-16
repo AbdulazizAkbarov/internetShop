@@ -9,11 +9,15 @@ import Image from "next/image";
 import { MenuIcon, SearchIcon } from "lucide-react";
 import SavatModal from "@/components/Modal/SavatModal";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/typr";
 
 function NavbarCenter() {
   const [savatModal, setSavatModal] = useState(false);
   const [katalogModal, setKatalogModal] = useState(false);
-  // const count=useSelector(state:RootState)
+  const count=useSelector((state:RootState)=>state.cart.items.length)
+  const countLike=useSelector((state:RootState)=>state.likeProduct.items.length)
+
 
   return (
     <div className="px-12 flex gap-5 items-center justify-between">
@@ -57,19 +61,26 @@ function NavbarCenter() {
         </div>
 
       <Link href={"/sevimlilar"}>
-      <button className="flex flex-col items-center">
+      <button className="flex flex-col relative items-center">
           <Image src={yurakIcon} alt="sd" width={30} height={30} />
+          {countLike>0&&(
+            <span className="bg-[#2C698D] absolute -top-2 right-1  text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{countLike}</span>
+            
+          )}
           <p className="font-bold">Sevimlilar</p>
         </button>
       </Link>
 
         <button
-          className="flex flex-col items-center cursor-pointer"
+          className="flex flex-col items-center relative cursor-pointer"
           onClick={() => {
             setSavatModal(true);
           }}
         >
           <Image src={savatIcon} alt="sd" width={30} height={30} />
+          {count>0&&(
+            <span className="bg-[#2C698D] absolute -top-2 right-1  text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{count}</span>
+          )}
           <p className="font-bold">Savatcha</p>
         </button>
       </div>

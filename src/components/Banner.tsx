@@ -33,7 +33,7 @@ const Banner = () => {
 
   return (
     <div className=" mx-auto px-8">
-      <div className="z-0 relative w-[1600px] mx-auto mt-4 h-[250px] md:h-[400px] overflow-hidden rounded-2xl shadow-lg group">
+      <div className="z-0 relative max-w-[1600px] mx-auto mt-4 h-[250px] md:h-[400px] overflow-hidden rounded-2xl shadow-lg group">
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
@@ -53,7 +53,7 @@ const Banner = () => {
         {banners.length > 0 ? (
           <div
             key={banners[current].id}
-            className="w-[1600px] h-full transition-all duration-700 ease-in-out relative"
+            className="max-w-[1600px] h-full transition-all duration-700 ease-in-out relative"
           >
             <Image
               src={banners[current].imageUrl}

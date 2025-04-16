@@ -16,7 +16,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <NavbarCenter />
       <NavbarBottom />
       <Component {...pageProps} />
-      <Footer/>
     </Provider>
   );
 }

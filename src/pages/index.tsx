@@ -18,6 +18,8 @@ export default function Home() {
     <div>
    <Banner/>
     <Card/>
+    <Footer/>
+
     </div>
   );
 }

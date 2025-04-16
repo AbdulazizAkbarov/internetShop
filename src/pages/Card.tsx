@@ -14,11 +14,10 @@ import yurakQizil from "../assets/svg/yurakQizil.svg";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import {
-  addsevimli,
-  addToCart,
-} from "@/components/layout/store/Slice/cart.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/components/layout/store/Slice/cart.slice";
+import { like } from "@/components/layout/store/Slice/like.slice";
+import { RootState } from "@/components/layout/store/typr";
 
 export type ProductType = {
   id: number;
@@ -29,11 +28,12 @@ export type ProductType = {
   description: string;
   createdAt: string;
   imageUrl: string;
+  isLiked?: boolean;
 };
 
 function Card() {
   const [product, setProduct] = useState<ProductType[]>([]);
-  const [likedProducts, setLikedProducts] = useState<number[]>([]);
+  const likeItems = useSelector((state: RootState) => state.likeProduct.items);
 
   useEffect(() => {
     axios
@@ -50,22 +50,15 @@ function Card() {
     dispatch(addToCart(product));
   };
 
-  const addSevimlilar = (product: ProductType) => {
-    dispatch(addsevimli(product));
-  };
-  const toggleLike = (id: number) => {
-    if (likedProducts.includes(id)) {
-      setLikedProducts(likedProducts.filter((productId) => productId !== id));
-    } else {
-      setLikedProducts([...likedProducts, id]);
-    }
+  const likeProduct = (product: ProductType) => {
+    dispatch(like(product));
   };
 
   return (
-    <div className="flex flex-wrap gap-4 justify-evenly my-6 px-12">
+    <div className=" grid grid-cols-5 mx-auto ml-12 my-6 px-12 ">
       {product.map((item) => {
-        const isLiked = likedProducts.includes(item.id);
-
+        const isliked =likeItems.some(i=>i.id===item.id)
+        
         return (
           <div
             key={item.id}
@@ -83,13 +76,12 @@ function Card() {
 
             <button
               onClick={() => {
-                toggleLike(item.id);
-                addSevimlilar(item);
+                likeProduct(item);
               }}
             >
               <Image
                 className="w-[20px] absolute top-0 right-1 cursor-pointer"
-                src={isLiked ? yurakQizil : yurakQora}
+                src={isliked ? yurakQizil : yurakQora}
                 alt="heart"
               />
             </button>
