@@ -35,15 +35,13 @@ function Card() {
   const [product, setProduct] = useState<ProductType[]>([]);
   const likeItems = useSelector((state: RootState) => state.likeProduct.items);
 
-  useEffect(() => {
-    axios
-      .get("https://nt.softly.uz/api/front/products?page=1&limit=10")
-      .then((res) => {
-        setProduct(res.data.items);
-        console.log(res.data);
-      });
-  }, []);
+useEffect(()=>{
 
+  axios.get("https://nt.softly.uz/api/front/products?page=1&limit=10").then((res)=>{
+    setProduct(res.data.items )
+  })
+
+},[])
   const dispatch = useDispatch();
 
   const addCart = (product: ProductType) => {
@@ -57,8 +55,8 @@ function Card() {
   return (
     <div className=" grid grid-cols-5 mx-auto ml-12 my-6 px-12 ">
       {product.map((item) => {
-        const isliked =likeItems.some(i=>i.id===item.id)
-        
+        const isliked = likeItems.some((i) => i.id === item.id);
+
         return (
           <div
             key={item.id}

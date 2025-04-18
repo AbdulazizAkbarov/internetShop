@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Card from "../Card";
+import { GetServerSidePropsContext } from "next";
 export type ProductTypes = {
   id: number;
   name: string;
@@ -16,18 +17,13 @@ export type ProductTypes = {
   imageUrl: string;
 };
 
-function Product() {
+function Product({product}:{product:ProductTypes} ) {
+  console.log(product);
+  
   const params = useParams();
 
   const id = params?.id;
 
-  const [product, setProduct] = useState<ProductTypes>();
-
-  useEffect(() => {
-    axios.get(`https://nt.softly.uz/api/front/products/${id}`).then((res) => {
-      setProduct(res.data);
-    });
-  }, [id]);
 
   if (!id) {
     return <div>Bunday Id Mavjud Emas</div>;
@@ -61,7 +57,7 @@ function Product() {
             <p className="text-xl font-semibold text-[grey]"> <span className="text-[black] text-2xl">Nechta Qolgani : </span>{product.stock}</p>
     <div className="bg-[lightgrey] w-full h-[1px] my-3"></div>
            
-            <p className="text-xl font-semibold text-[grey]"> <span className="text-[black] text-2xl">Narxi : </span>{(product.price).toLocaleString("ru")} s o'm</p>
+            <p className="text-xl font-semibold text-[grey]"> <span className="text-[black] text-2xl">Narxi : </span> {product.price ? product.price.toLocaleString("ru") + " s o'm" : "Narxi mavjud emas"}</p>
 
         </div>
     </div>
@@ -82,4 +78,12 @@ function Product() {
   </div>;
 }
 
+
+export const getServerSideProps =async({req}:GetServerSidePropsContext)=>{
+  const res1 = await fetch(`https://nt.softly.uz/api/front/products/${req.url?.slice(9)}`)
+
+  const product = await res1.json()
+
+  return {props:{product:product}}
+}
 export default Product;
