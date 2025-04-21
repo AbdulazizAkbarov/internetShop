@@ -48,7 +48,7 @@ function Category() {
           >
             <Link href={`/product/${item.id}`}>
               <Image
-                className="w-[200px] h-[190px] bg-[#F7F7F7] mb-4 object-contain"
+                className="w-[200px] h-[190px]  mb-4 object-contain"
                 src={item.imageUrl}
                 alt={item.name}
                 width={200}

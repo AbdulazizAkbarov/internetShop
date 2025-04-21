@@ -60,11 +60,11 @@ useEffect(()=>{
         return (
           <div
             key={item.id}
-            className="w-[220px] mt-6 relative hover:scale-[1.05] transition-transform shadow-2xl p-3 rounded-xl flex flex-col justify-between "
+            className="w-[320px] mt-6 relative h-[450px] hover:scale-[1.05] transition-transform shadow-2xl p-3 rounded-xl flex flex-col justify-between "
           >
             <Link href={`/product/${item.id}`}>
               <Image
-                className="w-[200px] h-[190px] bg-[#F7F7F7] mb-4 object-contain"
+                className="w-[310px] h-[190px] mb-4 object-contain"
                 src={item.imageUrl}
                 alt={item.name}
                 width={200}
@@ -84,15 +84,20 @@ useEffect(()=>{
               />
             </button>
 
-            <h2 className="font-semibold">{item.name}</h2>
+            <h2 className="font-semibold text-2xl">{item.name}</h2>
 
-            <h2 className="bg-[#ECECEC] px-2 inline-block rounded text-md my-4 text-overflow: ellipsis">
-              {item.description}
+            <p>
+            {item.description}
+
+            </p>
+
+            <h2 className="bg-[#ECECEC] px-2 inline-block w-[160px]  rounded-lg text-md my-4">
+              3000 so'm/oy
             </h2>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-5">
               <div className="flex items-center justify-between">
-                <h2>{item.price.toLocaleString("ru")} so'm</h2>
+                <h2 className="text-2xl font-bold">{item.price.toLocaleString("ru")} so'm</h2>
               </div>
 
               <button
