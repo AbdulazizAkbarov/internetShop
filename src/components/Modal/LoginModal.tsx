@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -35,6 +35,7 @@ export function DialogDemo({ user, setUser }: Props) {
     axios.post("https://nt.softly.uz/api/auth/login", value)
     .then((res) => {
       console.log(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data))
       dispatch(login(res.data))
     });
   }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userIcon from "../../../assets/svg/userIcon.svg";
 import yurakIcon from "../../../assets/svg/yurakIcon.svg";
 import savatIcon from "../../../assets/svg/savatIcon.svg";
@@ -23,18 +23,21 @@ import { DialogDemo } from "@/components/Modal/LoginModal";
 
 function NavbarCenter() {
   const [savatModal, setSavatModal] = useState(false);
-  // const [katalogModal, setKatalogModal] = useState(false);
   const [user, setUser] = useState<boolean>(false);
+  const [name, setName] = useState("")
   const count = useSelector((state: RootState) => state.cart.items.length);
   const countLike = useSelector(
     (state: RootState) => state.likeProduct.items.length
   );
-  const name = useSelector((state: RootState) => {
-    return state.login.user?.name;
-  });
   const userId = useSelector((state: RootState) => {
     return state.login.user?.id;
   });
+
+  useEffect(() => {
+      let user = JSON.parse(localStorage.getItem("user")!)
+      setName(user.user.name)
+  }, [name])
+
   return (
     <div className="px-12 flex gap-5 items-center justify-between">
       <SavatModal setSavatModal={setSavatModal} savatModal={savatModal} />

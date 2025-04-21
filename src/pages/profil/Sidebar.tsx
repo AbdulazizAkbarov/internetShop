@@ -11,11 +11,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Facebook from "@/assets/svg/facebook"
 const items = [
   {
     title: "Mening to'lovlarim",
     url: "#",
-    icon: Home,
+    icon: Facebook
   },
   {
     title: "To'lovar tarixi",
