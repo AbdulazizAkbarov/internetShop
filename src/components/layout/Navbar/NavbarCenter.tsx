@@ -35,11 +35,11 @@ function NavbarCenter() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const user = localStorage.getItem("user");
+      const user = localStorage.getItem("user")!;
       if (user) {
         try {
           const parsedUser = JSON.parse(user);
-          setName(parsedUser.name.user);
+          setName(parsedUser.user.name);
         } catch (error) {
           console.error("Foydalanuvchini o'qishda xatolik:", error);
         }

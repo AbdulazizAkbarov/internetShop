@@ -15,10 +15,10 @@ function Profil() {
 
   return (
     <div className="px-12">
-        <SidebarProvider>
-
       <div className=" flex ">
+        <SidebarProvider>
           <AppSidebar />
+        </SidebarProvider>
         <div>
           <div className="flex gap-6 mt-12">
             <div className="border w-[700px] rounded-lg">
@@ -204,8 +204,6 @@ function Profil() {
           </div>
         </div>
       </div>
-      </SidebarProvider>
-
     </div>
   );
 }
