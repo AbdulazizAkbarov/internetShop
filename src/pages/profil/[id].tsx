@@ -1,12 +1,12 @@
 import { RootState } from "@/components/layout/store/typr";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import Qongiroq from "@/assets/svg/qongiroq";
 import { Switch } from "@/components/ui/switch";
 import Card from "@/assets/svg/card";
 import Location from "@/assets/svg/location";
-import AppSidebar from "./Sidebar";
+import Sidebar from "./Sidebar";
+
 
 function Profil() {
   const name = useSelector((state: RootState) => state.login.user?.name);
@@ -16,9 +16,9 @@ function Profil() {
   return (
     <div className="px-12">
       <div className=" flex ">
-        <SidebarProvider>
-          <AppSidebar />
-        </SidebarProvider>
+      
+          <Sidebar />
+    
         <div>
           <div className="flex gap-6 mt-12">
             <div className="border w-[700px] rounded-lg">
