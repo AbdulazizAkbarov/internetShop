@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Inbox, Search } from "lucide-react";
 
 import {
   Sidebar,
@@ -34,7 +34,7 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export default function AppSidebar() {
   return (
     <Sidebar className="h-full relative mt-2 text-xl">
       <SidebarContent>

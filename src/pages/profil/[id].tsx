@@ -1,20 +1,17 @@
 import { RootState } from "@/components/layout/store/typr";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { AppSidebar } from "./Sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Qongiroq from "@/assets/svg/qongiroq";
 import { Switch } from "@/components/ui/switch";
 import Card from "@/assets/svg/card";
 import Location from "@/assets/svg/location";
+import AppSidebar from "./Sidebar";
 
 function Profil() {
-  const id = useSelector((state: RootState) => state.login.user?.id);
   const name = useSelector((state: RootState) => state.login.user?.name);
   const phone = useSelector((state: RootState) => state.login.user?.phone);
-  const role = useSelector((state: RootState) => state.login.user?.role);
   const [location, setLocation] = useState(true);
-
 
   return (
     <div className="px-12">

@@ -73,9 +73,6 @@ function Category() {
     router.push(`/category/${id}?page=${page}&limit=${limit}`);
   };
 
-  const changeLimit = (newLimit: number) => {
-    router.push(`/category/${id}?page=1&limit=${newLimit}`);
-  };
 
   return (
     <div className="flex flex-col px-12 py-6">
