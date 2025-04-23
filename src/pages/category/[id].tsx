@@ -39,7 +39,7 @@ function Category() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const currentPage = Number(searchParams.get("page")) || 1;
+  const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || 4;
 
   const [category, setCategory] = useState<CategoriesPage[]>([]);
@@ -48,7 +48,7 @@ function Category() {
   useEffect(() => {
     axios
       .get(
-        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${currentPage}&limit=${limit}`
+        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${page}&limit=${limit}`
       )
       .then((res) => {
         setCategory(res.data.items);
@@ -57,7 +57,7 @@ function Category() {
       .catch((err) => {
         console.error("Xatolik yuz berdi:", err);
       });
-  }, [id, currentPage, limit]);
+  }, [id, page, limit]);
 
   const pages = Math.ceil((buttons?.totalItems || 0) / (buttons?.limit || 1));
 
@@ -136,13 +136,13 @@ function Category() {
       <div className="flex justify-center mt-10">
         <Pagination>
           <PaginationContent>
-            {currentPage > 1 && (
+            {page > 1 && (
               <PaginationItem>
                 <PaginationPrevious
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    changePage(currentPage - 1);
+                    changePage(page - 1);
                   }}
                 />
               </PaginationItem>
@@ -152,7 +152,7 @@ function Category() {
               <PaginationItem key={i}>
                 <PaginationLink
                   href="#"
-                  isActive={currentPage === i + 1}
+                  isActive={page === i + 1}
                   onClick={(e) => {
                     e.preventDefault();
                     changePage(i + 1);
@@ -163,13 +163,13 @@ function Category() {
               </PaginationItem>
             ))}
 
-            {currentPage < pages && (
+            {page < pages && (
               <PaginationItem>
                 <PaginationNext
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    changePage(currentPage + 1);
+                    changePage(page + 1);
                   }}
                 />
               </PaginationItem>

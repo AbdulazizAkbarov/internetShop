@@ -1,8 +1,6 @@
 import { RootState } from "@/components/layout/store/typr";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import user from "../../assets/svg/userIcon.svg";
 import { AppSidebar } from "./Sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Qongiroq from "@/assets/svg/qongiroq";

@@ -1,5 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-import userIcon from "../../assets/svg/userIcon.svg"
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,13 +9,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import Facebook from "@/assets/svg/facebook"
+} from "@/components/ui/sidebar";
+import Facebook from "@/assets/svg/facebook";
 const items = [
   {
     title: "Mening to'lovlarim",
     url: "#",
-    icon: Facebook
+    icon: Facebook,
   },
   {
     title: "To'lovar tarixi",
@@ -33,8 +32,7 @@ const items = [
     url: "#",
     icon: Search,
   },
-
-]
+];
 
 export function AppSidebar() {
   return (
@@ -48,7 +46,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
-<item.icon/>
+                      <item.icon />
                       <span className="text-lg"> {item.title}</span>
                     </a>
                   </SidebarMenuButton>
@@ -59,5 +57,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
