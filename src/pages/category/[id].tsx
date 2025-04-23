@@ -79,20 +79,6 @@ function Category() {
 
   return (
     <div className="flex flex-col px-12 py-6">
-      <div className="flex justify-end mb-4">
-        <label className="mr-2 font-medium">Har sahifada:</label>
-        <select
-          value={limit}
-          onChange={(e) => changeLimit(Number(e.target.value))}
-          className="border border-gray-300 rounded px-3 py-1"
-        >
-          <option value="5">5 ta</option>
-          <option value="10">10 ta</option>
-          <option value="20">20 ta</option>
-          <option value="50">50 ta</option>
-        </select>
-      </div>
-
       <div className="flex flex-wrap gap-4">
         {category.map((item) => (
           <div

@@ -34,9 +34,19 @@ function NavbarCenter() {
   });
 
   useEffect(() => {
-      let user = JSON.parse(localStorage.getItem("user")!)
-      setName(user.user.name)
-  }, [name])
+    if (typeof window !== "undefined") {
+      const user = localStorage.getItem("user");
+      if (user) {
+        try {
+          const parsedUser = JSON.parse(user);
+          setName(parsedUser.name.user);
+        } catch (error) {
+          console.error("Foydalanuvchini o'qishda xatolik:", error);
+        }
+      }
+    }
+  }, []);
+  
 
   return (
     <div className="px-12 flex gap-5 items-center justify-between">
