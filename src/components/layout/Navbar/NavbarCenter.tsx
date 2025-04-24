@@ -79,7 +79,7 @@ function NavbarCenter() {
 
       <div className="flex gap-12">
         {name ? (
-          <Link href={`/profil`}>
+          <Link href={`/profile`}>
             <button className="flex flex-col items-center">
               <DropdownMenu>
                 <DropdownMenuTrigger>

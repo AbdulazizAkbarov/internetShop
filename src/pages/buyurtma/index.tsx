@@ -20,11 +20,16 @@ function Buyurtma() {
           },
         ],
       })
-      .then(() => {})
+      .then(() => {
+
+      })
       .catch((e) => {
         console.error("Xatolik", e);
       });
   };
+
+  console.log( handleSubmit);
+  
   const totalPrice = cartItem.reduce(
     (sum, item) => sum + item.price * item.count,
     0
