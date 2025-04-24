@@ -14,6 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { GetServerSidePropsContext } from "next";
 
 export type CategoriesPage = {
   id: number;
@@ -26,14 +27,29 @@ export type CategoriesPage = {
   imageUrl: string;
 };
 
-type objectType = {
+type ObjectType = {
   items: CategoriesPage[];
   totalItems: number;
   page: number;
   limit: number;
 };
 
-function Category() {
+export async function getServerSideProps(args: GetServerSidePropsContext) {
+  const res = await axios.get(`https://nt.softly.uz/api/front/products`, {
+    params: {
+      page: args.query.page,
+      limit: args.query.limit,
+    },
+  });
+
+  return {
+    props: {
+      data: res.data,
+    },
+  };
+}
+
+function Category({ data }: { data: ObjectType }) {
   const params = useParams();
   const id = params?.id;
   const router = useRouter();
@@ -42,42 +58,22 @@ function Category() {
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || 4;
 
-  const [category, setCategory] = useState<CategoriesPage[]>([]);
-  const [buttons, setButtons] = useState<objectType | null>(null);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${page}&limit=${limit}`
-      )
-      .then((res) => {
-        setCategory(res.data.items);
-        setButtons(res.data);
-      })
-      .catch((err) => {
-        console.error("Xatolik yuz berdi:", err);
-      });
-  }, [id, page, limit]);
-
-  const pages = Math.ceil((buttons?.totalItems || 0) / (buttons?.limit || 1));
+  const pages = Math.ceil((data?.totalItems || 0) / (data?.limit || 1));
 
   if (!id) {
     return <div>Bunday Id Mavjud Emas</div>;
-  }
-
-  if (!buttons || category.length === 0) {
-    return <div>Ma'lumot yo'q</div>;
   }
 
   const changePage = (page: number) => {
     router.push(`/category/${id}?page=${page}&limit=${limit}`);
   };
 
+  
 
   return (
     <div className="flex flex-col px-12 py-6">
       <div className="flex flex-wrap gap-4">
-        {category.map((item) => (
+        {data.items.map((item) => (
           <div
             key={item.id}
             className="w-[220px] mt-6 relative hover:scale-[1.05] transition-transform shadow-2xl p-3 rounded-xl flex flex-col justify-between"

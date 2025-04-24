@@ -1,27 +1,34 @@
-import {
-  minuscount,
-  pluscount,
-} from "@/components/layout/store/Slice/cart.slice";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { RootState } from "@/components/layout/store/typr";
 import Image from "next/image";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Footer from "@/components/layout/Footer";
+import axios from "axios";
 
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
 
-  const dispatch = useDispatch();
+
+
+  const handleSubmit = (values:any) => {
+    axios
+      .post("https://nt.softly.uz/api/front/orders", {
+        customerId: values.customerId,
+        items: [
+          {
+            productId: values.productId,
+            quantity: values.quantity,
+          },
+        ],
+      })
+      .then(() => {
+
+      })
+      .catch((e) => {
+        console.error("Xatolik", e);
+      });
+  };
   const totalPrice = cartItem.reduce(
     (sum, item) => sum + item.price * item.count,
     0
@@ -164,7 +171,9 @@ function Buyurtma() {
           </div>
 
           <div>
-            <p className="font-bold text-2xl my-4 mt-8">Yetqazib berish shartlari</p>
+            <p className="font-bold text-2xl my-4 mt-8">
+              Yetqazib berish shartlari
+            </p>
 
             <button className="px-24 text-center rounded-2xl border-1 py-2 border-[lightgrey] mr-5">
               <p className="font-bold text-xl">Ertaga yoki keyinroq</p>{" "}
@@ -177,17 +186,22 @@ function Buyurtma() {
           </div>
 
           <div>
-           <div className="flex items-center gap-2 my-5">
-           <h2 className="bg-black px-4 py-2 rounded-full text-xl font-bold text-white inline-block">
-              3
-            </h2>
-            <h2 className="text-2xl font-bold text-black">
-             To'lov usulini tanlang
-            </h2>
-           </div>
-
-
+            <div className="flex items-center gap-2 my-5">
+              <h2 className="bg-black px-4 py-2 rounded-full text-xl font-bold text-white inline-block">
+                3
+              </h2>
+              <h2 className="text-2xl font-bold text-black">
+                To'lov usulini tanlang
+              </h2>
+            </div>
           </div>
+
+          <div>
+            <button type="submit" className="bg-[#33698D] px-10 py-2  font-bold rounded text-white" onClick={()=>{
+              console.log("salom");
+              
+            }}>Saqlash</button>
+            </div>
         </div>
         <div className="border-1 border-[lightgrey] p-4 w-[500px] rounded-xl ">
           <h2 className="font-bold text-2xl">Buyurtmadagi mahsulotlar</h2>
@@ -217,8 +231,6 @@ function Buyurtma() {
             Jami: {totalPrice.toLocaleString("ru")} so'm
           </p>
         </div>
-
-        
       </div>
       <Footer />
     </div>
