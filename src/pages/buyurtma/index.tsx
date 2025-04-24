@@ -9,12 +9,10 @@ function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
 
-
-
-  const handleSubmit = (values:any) => {
+  const handleSubmit = (values: any) => {
     axios
       .post("https://nt.softly.uz/api/front/orders", {
-        customerId: values.customerId,
+        address: values.address,
         items: [
           {
             productId: values.productId,
@@ -22,9 +20,7 @@ function Buyurtma() {
           },
         ],
       })
-      .then(() => {
-
-      })
+      .then(() => {})
       .catch((e) => {
         console.error("Xatolik", e);
       });
@@ -197,11 +193,16 @@ function Buyurtma() {
           </div>
 
           <div>
-            <button type="submit" className="bg-[#33698D] px-10 py-2  font-bold rounded text-white" onClick={()=>{
-              console.log("salom");
-              
-            }}>Saqlash</button>
-            </div>
+            <button
+              type="submit"
+              className="bg-[#33698D] px-10 py-2  font-bold rounded text-white"
+              onClick={() => {
+                handleSubmit;
+              }}
+            >
+              Saqlash
+            </button>
+          </div>
         </div>
         <div className="border-1 border-[lightgrey] p-4 w-[500px] rounded-xl ">
           <h2 className="font-bold text-2xl">Buyurtmadagi mahsulotlar</h2>
