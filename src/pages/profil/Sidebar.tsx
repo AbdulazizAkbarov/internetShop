@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, Inbox, Search, Menu, CreditCard, PieChart, ListOrdered, DoorOpen } from "lucide-react";
-import { RootState } from "@/components/layout/store/typr";
-
+import {  Menu, CreditCard, PieChart, ListOrdered, DoorOpen } from "lucide-react";
 const items = [
   { title: "Mening to'lovlarim", href: "#", icon:CreditCard},
   { title: "To'lovlar tarixi", href: "#", icon:PieChart },
@@ -42,8 +40,14 @@ export default function Sidebar() {
                 <item.icon className="w-13 h-13 bg-[#f3f1f1] p-4 rounded-full border-1 border-[grey]\" />
                 <span className="font-bold">{item.title}</span>
               </a>
+              
             ))}
           </nav>
+
+            
+        
+
+          
         </div>
       </div>
 

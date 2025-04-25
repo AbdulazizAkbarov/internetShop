@@ -29,6 +29,7 @@ export type ProductType = {
   createdAt: string;
   imageUrl: string;
   isLiked?: boolean;
+  count:number
 };
 
 function Card() {
@@ -53,14 +54,14 @@ useEffect(()=>{
   };
 
   return (
-    <div className=" grid grid-cols-5 mx-auto ml-12 my-6 px-12 ">
+    <div className=" grid grid-cols-5  gap-5 mx-auto ml-12 my-6 px-12 ">
       {product.map((item) => {
         const isliked = likeItems.some((i) => i.id === item.id);
 
         return (
           <div
             key={item.id}
-            className="w-[320px] mt-6 relative h-[450px] hover:scale-[1.05] transition-transform shadow-2xl p-3 rounded-xl flex flex-col justify-between "
+            className="max-w-[320px] mt-6 relative h-[450px] transition-transform shadow-2xs hover:shadow-2xl border p-3 rounded-xl flex flex-col justify-between "
           >
             <Link href={`/product/${item.id}`}>
               <Image
@@ -78,7 +79,7 @@ useEffect(()=>{
               }}
             >
               <Image
-                className="w-[20px] absolute top-0 right-1 cursor-pointer"
+                className="w-[20px] absolute top-2 right-3 cursor-pointer"
                 src={isliked ? yurakQizil : yurakQora}
                 alt="heart"
               />

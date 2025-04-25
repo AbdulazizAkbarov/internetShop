@@ -1,6 +1,6 @@
 import { RootState } from "@/components/layout/store/typr";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import Footer from "@/components/layout/Footer";
 import axios from "axios";
@@ -8,27 +8,29 @@ import axios from "axios";
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
+  const [address, setAddress] = useState("");
+  const accessToken = useSelector((state:RootState)=>state.login.accessToken)
+  
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = () => {
     axios
-      .post("https://nt.softly.uz/api/front/orders", {
-        address: values.address,
-        items: [
-          {
-            productId: values.productId,
-            quantity: values.quantity,
-          },
-        ],
-      })
+      .post(
+        "https://nt.softly.uz/api/front/orders",
+        {
+          address: address,
+          items: cartItem.map((i) => ({
+            productId: i.id,
+            quantity: i.count,
+          })),
+        },
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      )
       .then(() => {
-
       })
       .catch((e) => {
         console.error("Xatolik", e);
       });
   };
-
-  console.log( handleSubmit);
   
   const totalPrice = cartItem.reduce(
     (sum, item) => sum + item.price * item.count,
@@ -41,7 +43,7 @@ function Buyurtma() {
       </h2>
       <div className="bg-[lightgrey] w-full h-[1px] my-12"></div>
 
-      <div className="flex px-12 justify-between  mb-3">
+      <div  className="flex px-12 justify-between  mb-3">
         <div>
           <div className="mb-5 flex items-center gap-2">
             <h2 className="bg-black px-4 py-2 rounded-full text-xl font-bold text-white inline-block">
@@ -155,6 +157,8 @@ function Buyurtma() {
                 <div className="flex items-center gap-5">
                   <input
                     type="text"
+                    value={address}
+                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Manzil toliq holatda"
                     className="border-1 border-[lightgrey] outline-none p-4 w-[700px] rounded-lg"
                   />
@@ -199,11 +203,11 @@ function Buyurtma() {
 
           <div>
             <button
+            onClick={()=>{
+              handleSubmit()
+            }}
               type="submit"
               className="bg-[#33698D] px-10 py-2  font-bold rounded text-white"
-              onClick={() => {
-                handleSubmit;
-              }}
             >
               Saqlash
             </button>

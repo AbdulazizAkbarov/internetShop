@@ -1,30 +1,48 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type LoginType = {
-  accsessToken?: string;
+  accessToken?: string;
   user?: {
     id: number;
-    name:string
-    token:string
-    role:string
-    email:string
-    phone:number
-    
+    name: string;
+    token: string;
+    role: string;
+    email: string;
+    phone: number;
   };
 };
 
-const initialState: LoginType = {
-  accsessToken: undefined,
+const getInitialAuthState = (): LoginType => {
+  if (typeof window !== "undefined") {
+    const auth = localStorage.getItem("auth");
+    if (auth) {
+      try {
+        const person = JSON.parse(auth);
+        return {
+          accessToken: person.accessToken,
+          user: person.user,
+        };
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+  return {
+    accessToken: undefined,
+    user: undefined,
+  };
 };
 
+const initialState: LoginType = getInitialAuthState();
+
 export const loginSlice = createSlice({
-  name: "cart",
+  name: "auth",
   initialState: initialState,
 
   reducers: {
     login: (state, { payload }) => {
-        state.accsessToken=payload.accsessToken
-        state.user =payload.user
+      state.accessToken = payload.accessToken;
+      state.user = payload.user;
     },
   },
 });
