@@ -8,7 +8,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="bg-[#272643]">
-      <div className=" pt-15 flex  justify-between pl-11 container mx-auto ">
+      <div className=" pt-15 flex  justify-between  container mx-auto ">
         <div className=" text-[#E3F6F5]">
           <p>Savolingiz bormi? Qo'ng'iroq qiling </p>
           <p className="text-4xl font-bold py-4">+998 93 823 11 77</p>
@@ -105,7 +105,7 @@ function Footer() {
       </div>
 
       <div className="w-full h-[1px] bg-[lightgrey] mt-7"></div>
-      <div className="flex justify-between px-12 text-[#E3F6F5] py-6 container mx-auto">
+      <div className="flex justify-between  text-[#E3F6F5] py-6 container mx-auto">
         <p>
           2016-2025 © texnomart.uz. Barcha huquqlar himoyalangan. Tovarlarning
           ko'rsatilgan qiymati va ularni sotib <br />

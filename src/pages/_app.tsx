@@ -1,7 +1,7 @@
 import NavbarBottom from "@/components/layout/Navbar/NavbarBottom";
 import NavbarCenter from "@/components/layout/Navbar/NavbarCenter";
 import NavbarTop from "@/components/layout/Navbar/NavbarTop";
-import { store } from "@/store/store";
+import { store } from "@/components/layout/store/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";

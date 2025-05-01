@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import userIcon from "../../../assets/svg/userIcon.svg";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/typr";
+import { RootState } from "../store/typr";
 import { DialogDemo } from "@/components/Modal/LoginModal";
 
 function Login() {

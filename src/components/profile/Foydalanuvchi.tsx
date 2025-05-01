@@ -4,7 +4,7 @@ import { Switch } from "@/components/ui/switch";
 import Card from "@/assets/svg/card";
 import Location from "@/assets/svg/location";
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/typr';
+import { RootState } from '@/components/layout/store/typr';
 function Fodalanuvchi() {
   const name = useSelector((state: RootState) => state.login.user?.name);
   const phone = useSelector((state: RootState) => state.login.user?.phone);

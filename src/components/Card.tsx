@@ -36,7 +36,7 @@ function Card() {
   }, []);
 
   return (
-    <div className=" grid grid-cols-5  gap-5 mx-auto my-6 px-12  container ">
+    <div className=" grid grid-cols-5  gap-5 mx-auto my-6   container ">
       {product.map((item) => {
         return <CartItem item={item} key={item.id} />;
       })}

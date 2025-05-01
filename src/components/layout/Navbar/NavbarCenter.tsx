@@ -7,7 +7,7 @@ import { MenuIcon, SearchIcon } from "lucide-react";
 import SavatModal from "@/components/Modal/SavatModal";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/typr";
+import { RootState } from "../store/typr";
 import { DialogDemo } from "@/components/Modal/LoginModal";
 import dynamic from "next/dynamic";
 const Login =dynamic(()=>import("../Navbar/Login"),{
@@ -28,7 +28,7 @@ console.log(user);
 
   
   return (
-    <div className="px-12 flex gap-5 items-center max-w-[1600px] justify-between container mx-auto">
+    <div className=" flex gap-5 items-center max-w-[1540px] justify-between container mx-auto">
       <SavatModal setSavatModal={setSavatModal} savatModal={savatModal} />
       <DialogDemo user={loginDrawer} setUser={setLoginDrawer} />
 

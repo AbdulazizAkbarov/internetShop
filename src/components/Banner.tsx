@@ -32,7 +32,7 @@ const Banner = () => {
   };
 
   return (
-    <div className=" mx-auto px-8 container">
+    <div className=" mx-auto  container">
       <div className="z-0 relative max-w-[1600px] mx-auto mt-4 h-[250px] md:h-[400px] overflow-hidden rounded-2xl shadow-lg group">
         <button
           onClick={handlePrev}

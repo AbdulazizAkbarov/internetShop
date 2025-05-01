@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/typr";
+import { RootState } from "../layout/store/typr";
 import Image from "next/image";
 import {
   minuscount,
   pluscount,
   removeCart,
-} from "../../store/Slice/cart.slice";
+} from "../layout/store/Slice/cart.slice";
 import Link from "next/link";
 import Trash from "@/assets/svg/trash";
 

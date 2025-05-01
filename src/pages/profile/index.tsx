@@ -1,4 +1,4 @@
-import { RootState } from "@/store/typr";
+import { RootState } from "@/components/layout/store/typr";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 

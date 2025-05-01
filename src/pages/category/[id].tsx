@@ -1,15 +1,8 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+
 import { GetServerSidePropsContext } from "next";
 import { Button, buttonVariants } from "@/components/ui/button";
 import CartItem from "@/components/CartItem";
@@ -64,8 +57,8 @@ function Category({ data }: { data: ObjectType }) {
   }
 
   return (
-    <div className="flex flex-col  py-6  ">
-      <div className="grid grid-cols-5 gap-4 container mx-auto">
+    <div className="flex flex-col px-12 py-6 container mx-auto">
+      <div className="flex flex-wrap gap-4">
         {data.items.map((item) => (
           <CartItem key={item.id} item={item} />
         ))}

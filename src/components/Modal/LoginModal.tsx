@@ -18,7 +18,7 @@ import {
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector, } from "react-redux";
-import { login } from "../../store/Slice/auth.slice";
+import { login } from "../layout/store/Slice/auth.slice";
 
 type Props = {
   user: boolean;

@@ -1,11 +1,11 @@
-import { addToCart } from "@/store/Slice/cart.slice";
+import { addToCart } from "@/components/layout/store/Slice/cart.slice";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType } from "./Card";
-import { RootState } from "@/store/typr";
-import { like } from "@/store/Slice/like.slice";
+import { RootState } from "@/components/layout/store/typr";
+import { like } from "@/components/layout/store/Slice/like.slice";
 import savatIcon from "../assets/svg/savatIcon.svg";
 import yurakQora from "../assets/svg/yurakQora.svg";
 import yurakQizil from "../assets/svg/yurakQizil.svg";

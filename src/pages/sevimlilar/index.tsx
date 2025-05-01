@@ -1,4 +1,4 @@
-import { RootState } from "@/store/typr";
+import { RootState } from "@/components/layout/store/typr";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,8 +8,8 @@ import savatIcon from "../../assets/svg/savatIcon.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType } from "../../components/Card";
-import { addToCart } from "@/store/Slice/cart.slice";
-import { like } from "@/store/Slice/like.slice";
+import { addToCart } from "@/components/layout/store/Slice/cart.slice";
+import { like } from "@/components/layout/store/Slice/like.slice";
 import CartItem from "@/components/CartItem";
 
 function Sevimlilar() {

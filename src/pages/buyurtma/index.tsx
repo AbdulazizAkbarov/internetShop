@@ -1,10 +1,10 @@
-import { RootState } from "@/store/typr";
+import { RootState } from "@/components/layout/store/typr";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "@/components/layout/Footer";
 import axios from "axios";
-import { fullRemove } from "@/store/Slice/cart.slice";
+import { fullRemove } from "@/components/layout/store/Slice/cart.slice";
 import { toast } from "sonner";
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
