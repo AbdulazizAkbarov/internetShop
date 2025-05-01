@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "@/components/layout/Footer";
 import axios from "axios";
 import { fullRemove } from "@/store/Slice/cart.slice";
+import { toast } from "sonner";
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
@@ -17,12 +18,12 @@ const fullremove =()=>{
 }
   const handleSubmit = () => {
 if (!address.trim()) {
-  alert("Manzil Kiriting !")
+  toast.success("Manzil Kiriting !")
   return;
   
 }
 if (!accessToken) {
-  alert("Avval Ro'yhatdan o'ting !")
+  toast.success("Avval Ro'yhatdan o'ting !")
   return;
   
 }
@@ -39,7 +40,7 @@ if (!accessToken) {
         { headers: { Authorization: `Bearer ${accessToken}` } }
       )
       .then(() => {
-        alert("Buyurtma Jonatildi")
+        toast.success("Buyurtma berildi !")
         fullremove()
       })
       .catch((e) => {
