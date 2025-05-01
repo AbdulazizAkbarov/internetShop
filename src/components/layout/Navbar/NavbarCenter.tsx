@@ -1,15 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import yurakIcon from "../../../assets/svg/yurakIcon.svg";
 import savatIcon from "../../../assets/svg/savatIcon.svg";
-
-
 import Image from "next/image";
 import { MenuIcon, SearchIcon } from "lucide-react";
 import SavatModal from "@/components/Modal/SavatModal";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/typr";
+import { RootState } from "../../../store/typr";
 import { DialogDemo } from "@/components/Modal/LoginModal";
 import dynamic from "next/dynamic";
 const Login =dynamic(()=>import("../Navbar/Login"),{
@@ -30,7 +28,7 @@ console.log(user);
 
   
   return (
-    <div className="px-12 flex gap-5 items-center max-w-[1900px] justify-between">
+    <div className="px-12 flex gap-5 items-center max-w-[1600px] justify-between container mx-auto">
       <SavatModal setSavatModal={setSavatModal} savatModal={savatModal} />
       <DialogDemo user={loginDrawer} setUser={setLoginDrawer} />
 
@@ -48,7 +46,7 @@ console.log(user);
 
         <div className="border-3 border-[#2C698D]  max-w-[800px] h-[50px] flex items-center ">
           <input
-            className="bg-[white] px-0.5 mt-1 max-w-[790px] ml-0.5  h-[40px] outline-none text-xl"
+            className="bg-[white] px-0.5 mt-1 w-[600px] max-w-[750px] ml-0.5  h-[40px] outline-none text-xl"
             type="text"
             placeholder="Qidirish"
           />

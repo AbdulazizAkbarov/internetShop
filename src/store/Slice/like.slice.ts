@@ -1,4 +1,4 @@
-import { ProductType } from "@/pages/Card";
+import { ProductType } from "@/components/Card";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type LikeState = {

@@ -12,7 +12,7 @@ function NavbarBottom() {
     });
   }, []);
   return (
-    <div className="flex justify-between mx-12 mt-5">
+    <div className="flex justify-between px-5  mt-5 container mx-auto">
       {category.map((i) => {
         return (
           <div key={i.id}>

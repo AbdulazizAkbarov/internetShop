@@ -18,25 +18,38 @@ import {
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector, } from "react-redux";
-import { login } from "../layout/store/Slice/auth.slice";
+import { login } from "../../store/Slice/auth.slice";
 
 type Props = {
   user: boolean;
   setUser: (value: boolean) => void;
 };
 
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
 
 export function DialogDemo({ user, setUser }: Props) {
-  const form = useForm();
+  const form = useForm<LoginFormValues>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
   const dispatch=useDispatch()
   
-  function onSubmit(value: any) {
-
+  function onSubmit(value: LoginFormValues) {
+    console.log(value);
+    
     axios.post("https://nt.softly.uz/api/auth/login", value)
     .then((res) => {
       console.log(res.data);
       localStorage.setItem("user", JSON.stringify(res.data))
       dispatch(login(res.data))
+      setUser(false); 
+    }).catch((err) => {
+      console.error("Login failed", err);
     });
   }
   
@@ -85,9 +98,7 @@ export function DialogDemo({ user, setUser }: Props) {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="bg-[#33698D] w-full" onClick={()=>{
-              setUser(false)
-            }}>
+             <Button type="submit" className="bg-[#33698D] w-full">
               Login
             </Button>
           </form>

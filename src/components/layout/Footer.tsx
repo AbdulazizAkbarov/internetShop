@@ -8,8 +8,8 @@ import React from "react";
 function Footer() {
   return (
     <div className="bg-[#272643]">
-      <div className=" pt-15 flex  justify-evenly ">
-        <div className="pl-12 text-[#E3F6F5]">
+      <div className=" pt-15 flex  justify-between pl-11 container mx-auto ">
+        <div className=" text-[#E3F6F5]">
           <p>Savolingiz bormi? Qo'ng'iroq qiling </p>
           <p className="text-4xl font-bold py-4">+998 93 823 11 77</p>
 
@@ -92,11 +92,8 @@ function Footer() {
               <h2>QR codni skanerlang</h2>
 
               <Image
-              
                 src={
                   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAWCAYAAAC7ZX7KAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAG+SURBVHgB1VXLbcJAEB2b35US3AHQQaggUAFJBfEFOBIf+SmmgriD0AGkgpgONh1w5pv30BIZS0YILFg/yR571559OzvzRiQj6Ha7Dq0lGYDruuVisfiz3W5fbckACoXCO8x0PB7P82I42u32i2VZz6vVqsZ3o1OCebvf72cgW/d9X3HM2JQ4ksXlH8kSRqYEi4xkd7tdMBqNJtE541KCZFFkjOwUZL34vFEpwTSgfCWRJYwhDDWoRtLAS/rOiJTodDouTI+NAVo7PfftQ4tOt9tPRFXW63UtqgZJeEiEdWG5aAgtytZwOJxc+u9dIxwh+gaiYbQhXIoTwlqsP3B52HUoKSFOFFcD/r/lCuSjDuGoxSrdbDZKbgR9lkqlFh4b8FuFDUD4aTAYLOQGWJQTOPriCxw3r4ms3rCTy+Wq2HAF/kiS3YoVH6CgFjj6paSAPBYoYyEHzyEWmkFiBJbHtoRd0mLuZDGMO/qRlmlEqyBLc9u2Q/hspplSJ2vzhijPQGKO4/J0tCpYmBEqY/xgY/8p3jCuQE5BO3/lTjgQBkm2RJKu9/t9JQbj0Jq1tASIVk8Mx7+sQRMnLBwxHH/THgE+tYJhcAAAAABJRU5ErkJggg=="
-                  
-                 
                 }
                 alt="sd"
                 width={80}
@@ -108,21 +105,40 @@ function Footer() {
       </div>
 
       <div className="w-full h-[1px] bg-[lightgrey] mt-7"></div>
-     <div className="flex justify-between px-12 text-[#E3F6F5] py-6">
-     <p>
-        2016-2025 © texnomart.uz. Barcha huquqlar himoyalangan. Tovarlarning
-        ko'rsatilgan qiymati va ularni sotib <br />
-        olish shartlari joriy sanaga amal qiladi
-      </p>
+      <div className="flex justify-between px-12 text-[#E3F6F5] py-6 container mx-auto">
+        <p>
+          2016-2025 © texnomart.uz. Barcha huquqlar himoyalangan. Tovarlarning
+          ko'rsatilgan qiymati va ularni sotib <br />
+          olish shartlari joriy sanaga amal qiladi
+        </p>
 
-      <div className="flex gap-3">
-        <Image src={"https://texnomart.uz/_nuxt/img/uzcard.fbf7a3b.png"} alt="s"width={75} height={18} />
-        <Image src={"https://texnomart.uz/_nuxt/img/humo.ce272fe.png"} alt="s"width={75} height={18}/>
-        <Image src={"https://texnomart.uz/_nuxt/img/payme.fac2924.png"} alt="s"width={75} height={18}/>
-        <Image src={"https://texnomart.uz/_nuxt/img/click.b558a2e.png"} alt="s"width={75} height={18}/>
-
+        <div className="flex gap-3">
+          <Image
+            src={"https://texnomart.uz/_nuxt/img/uzcard.fbf7a3b.png"}
+            alt="s"
+            width={75}
+            height={18}
+          />
+          <Image
+            src={"https://texnomart.uz/_nuxt/img/humo.ce272fe.png"}
+            alt="s"
+            width={75}
+            height={18}
+          />
+          <Image
+            src={"https://texnomart.uz/_nuxt/img/payme.fac2924.png"}
+            alt="s"
+            width={75}
+            height={18}
+          />
+          <Image
+            src={"https://texnomart.uz/_nuxt/img/click.b558a2e.png"}
+            alt="s"
+            width={75}
+            height={18}
+          />
+        </div>
       </div>
-     </div>
     </div>
   );
 }

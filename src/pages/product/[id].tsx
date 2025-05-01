@@ -4,7 +4,7 @@ import { Cable } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Card from "../Card";
+import Card from "../../components/Card";
 import { GetServerSidePropsContext } from "next";
 export type ProductTypes = {
   id: number;
@@ -33,7 +33,7 @@ function Product({product}:{product:ProductTypes} ) {
     return <div>Mahsulot Yo'q</div>;
   }
 
-  return <div className="px-12 mx-auto">
+  return <div className="container mx-auto">
 
     <p className="text-4xl font-bold mt-8 ml-5">{product.name}</p>
     <div className="bg-[lightgrey] w-full h-[1px] mt-4"></div>

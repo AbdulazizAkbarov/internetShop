@@ -14,7 +14,7 @@ type LoginType = {
 
 const getInitialAuthState = (): LoginType => {
   if (typeof window !== "undefined") {
-    const auth = localStorage.getItem("auth");
+    const auth = localStorage.getItem("user");
     if (auth) {
       try {
         const person = JSON.parse(auth);

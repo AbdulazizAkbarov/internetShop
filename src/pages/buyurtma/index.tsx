@@ -1,18 +1,31 @@
-import { RootState } from "@/components/layout/store/typr";
+import { RootState } from "@/store/typr";
 import Image from "next/image";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "@/components/layout/Footer";
 import axios from "axios";
-
+import { fullRemove } from "@/store/Slice/cart.slice";
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
   const [address, setAddress] = useState("");
   const accessToken = useSelector((state:RootState)=>state.login.accessToken)
   
-
+const dispatch=useDispatch()
+const fullremove =()=>{
+  dispatch(fullRemove())
+}
   const handleSubmit = () => {
+if (!address.trim()) {
+  alert("Manzil Kiriting !")
+  return;
+  
+}
+if (!accessToken) {
+  alert("Avval Ro'yhatdan o'ting !")
+  return;
+  
+}
     axios
       .post(
         "https://nt.softly.uz/api/front/orders",
@@ -26,6 +39,8 @@ function Buyurtma() {
         { headers: { Authorization: `Bearer ${accessToken}` } }
       )
       .then(() => {
+        alert("Buyurtma Jonatildi")
+        fullremove()
       })
       .catch((e) => {
         console.error("Xatolik", e);
@@ -37,13 +52,13 @@ function Buyurtma() {
     0
   );
   return (
-    <div className="">
+    <div className="container mx-auto">
       <h2 className="text-3xl font-bold mt-8 px-12">
         Xaridni Rasmiylashtirish
       </h2>
       <div className="bg-[lightgrey] w-full h-[1px] my-12"></div>
 
-      <div  className="flex px-12 justify-between  mb-3">
+      <div  className="flex px-12 justify-between gap-4  mb-3">
         <div>
           <div className="mb-5 flex items-center gap-2">
             <h2 className="bg-black px-4 py-2 rounded-full text-xl font-bold text-white inline-block">
@@ -190,16 +205,7 @@ function Buyurtma() {
             </button>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 my-5">
-              <h2 className="bg-black px-4 py-2 rounded-full text-xl font-bold text-white inline-block">
-                3
-              </h2>
-              <h2 className="text-2xl font-bold text-black">
-                To'lov usulini tanlang
-              </h2>
-            </div>
-          </div>
+          
 
           <div>
             <button
@@ -207,9 +213,9 @@ function Buyurtma() {
               handleSubmit()
             }}
               type="submit"
-              className="bg-[#33698D] px-10 py-2  font-bold rounded text-white"
+              className="bg-[#33698D] px-10 py-2  font-bold rounded text-white mt-5"
             >
-              Saqlash
+              Buyurtma berish
             </button>
           </div>
         </div>

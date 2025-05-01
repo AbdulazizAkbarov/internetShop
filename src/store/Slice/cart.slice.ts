@@ -1,4 +1,4 @@
-import { ProductType } from "@/pages/Card";
+import { ProductType } from "@/components/Card";
 import { ProductTypes } from "@/pages/product/[id]";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -30,6 +30,9 @@ export const cartSlice = createSlice({
     removeCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
+    fullRemove:(state)=>{
+      state.items=[]
+    },
     minuscount: (state, action: PayloadAction<number>) => {
       const minus = state.items.find((item) => item.id === action.payload);
 
@@ -48,6 +51,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, minuscount, pluscount, removeCart } =
+export const { addToCart, minuscount, pluscount, removeCart,fullRemove } =
   cartSlice.actions;
 export default cartSlice.reducer;

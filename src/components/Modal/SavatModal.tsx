@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../layout/store/typr";
+import { RootState } from "../../store/typr";
 import Image from "next/image";
 import {
   minuscount,
   pluscount,
   removeCart,
-} from "../layout/store/Slice/cart.slice";
+} from "../../store/Slice/cart.slice";
 import Link from "next/link";
 import Trash from "@/assets/svg/trash";
 
@@ -48,21 +48,22 @@ const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
         </button>
 
         {cartItem.length > 0 ? (
-          <div className="flex justify-between">
-            <div className=" w-[60%]">
+          <div className="flex justify-between ">
+            <div className=" w-[60%] overflow-x-auto h-[400px] mt-5">
               {cartItem.map((item) => (
                 <div
                   key={item.id}
-                  className="flex  w-[100%]  rounded-full my-2 px-5  justify-between items-center py-2"
+                  className="flex  w-[100%]  rounded-full my-3 px-5  justify-between items-center py-2 "
                 >
                   <div className="flex gap-3 items-center">
                     <Image
                       src={item.imageUrl}
-                      width={70}
-                      height={70}
+                      width={50}
+                      height={45}
                       alt="img"
+                      className="object-cover"
                     />
-                    <p className="text-2xl">{item.name}</p>
+                    <p className="text-xl">{item.name}</p>
                   </div>
 
                   <div className="flex gap-5 justify-between w-[45%]">
@@ -102,13 +103,8 @@ const SavatModal: React.FC<Props> = ({ setSavatModal, savatModal }) => {
               ))}
             </div>
             <div>
-              <div className="w-40% border-1 border-[lightgrey] py-4 px-20 rounded-xl">
-                <p className="bg-[lightgrey] px-2 py-0.5 rounded my-3">
-                  Hojiroq to'lash{" "}
-                  <span className="bg-white px-1 py-0.5 rounded">
-                    Muddatli to'lov
-                  </span>
-                </p>
+              <div className="w-40% border-1 border-[lightgrey] py-4 px-20 rounded-xl mt-10">
+
 
                 <p className="text-2xl font-bold text-end">
                   Jami: {totalPrice.toLocaleString("ru")} so'm
