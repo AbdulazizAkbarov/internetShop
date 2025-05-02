@@ -2,16 +2,16 @@ import { RootState } from "@/components/layout/store/typr";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "@/components/layout/Footer";
 import axios from "axios";
 import { fullRemove } from "@/components/layout/store/Slice/cart.slice";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 function Buyurtma() {
   const cartItem = useSelector((state: RootState) => state.cart.items);
   const [yetqazish, setYetqazish] = useState(true);
   const [address, setAddress] = useState("");
   const accessToken = useSelector((state:RootState)=>state.login.accessToken)
-  
+  const router =useRouter()
 const dispatch=useDispatch()
 const fullremove =()=>{
   dispatch(fullRemove())
@@ -42,6 +42,9 @@ if (!accessToken) {
       .then(() => {
         toast.success("Buyurtma berildi !")
         fullremove()
+
+        
+        router.push("/profile")
       })
       .catch((e) => {
         console.error("Xatolik", e);
@@ -214,7 +217,7 @@ if (!accessToken) {
               handleSubmit()
             }}
               type="submit"
-              className="bg-[#33698D] px-10 py-2  font-bold rounded text-white mt-5"
+              className="bg-[#33698D] px-10 py-2  font-bold rounded-lg text-white mt-5"
             >
               Buyurtma berish
             </button>
@@ -249,7 +252,6 @@ if (!accessToken) {
           </p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
