@@ -43,7 +43,7 @@ function Profile() {
       )
       .then((res) => {
         setOrderProduct(res.data);
-        console.log("malumot", res.data);
+        console.log("malumott", res.data);
       });
   }, []);
 
